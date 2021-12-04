@@ -25,13 +25,16 @@
 )
 (format t "Increase inc-count : ~d" inc-count)
 
-(setq last-depth 0)
-(setq inc-count 0)
-(loop for (a b c) on depths
-      while c
-      do
-	 (
-	  if (> (sum (list a b c)) last-depth)
-	     (setq inc-count (+ 1 inc-count))
-	     ()
+(defun sum (l) (apply '+ l))
+
+(progn
+  (setq last-depth 0)
+  (setq inc-count 0)
+  (loop for (a b c) on depths
+	while c
+	do
+	   (progn
+	     (if (and (< 0 last-depth) (> (sum (list a b c)) last-depth))
+		 (setq inc-count (+ 1 inc-count)))
 	     (setq last-depth (sum (list a b c)))))
+  (format t "Increase inc-count : ~d" inc-count))
