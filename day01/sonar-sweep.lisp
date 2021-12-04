@@ -1,7 +1,8 @@
 
 (defvar input-file "input.txt")
-(defvar count 0)
+(defvar inc-count 0)
 (defvar depths (list))
+(defvar last-depth 0)
 
 (defun read-file-as-lines (filename)
   "Read file into a list of lines."
@@ -13,14 +14,24 @@
 (setq depths (loop for d in (read-file-as-lines input-file)
 		     collect (parse-integer d)))
 
-(setq count 0)
+(setq inc-count 0)
 (loop for d in depths
       for x from 1
 
       when (> x 1)
 	if (> d last-depth)
-	  do (setq count (+ 1 count))
+	  do (setq inc-count (+ 1 inc-count))
       do (setq last-depth d)
 )
-(format t "Increase count : ~d" count)
-		
+(format t "Increase inc-count : ~d" inc-count)
+
+(setq last-depth 0)
+(setq inc-count 0)
+(loop for (a b c) on depths
+      while c
+      do
+	 (
+	  if (> (sum (list a b c)) last-depth)
+	     (setq inc-count (+ 1 inc-count))
+	     ()
+	     (setq last-depth (sum (list a b c)))))
