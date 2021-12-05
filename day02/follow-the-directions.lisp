@@ -23,6 +23,8 @@
   (format t "~d~%" (* horiz vert))
   )
 
+;; Day 2
+
 (progn
   (setq horiz 0)
   (setq vert 0)
